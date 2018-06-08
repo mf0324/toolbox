@@ -56,4 +56,10 @@ my_add_executable(app src/face_detection_ex.cpp)
 # add_library(app SHARED vl)
 
 # 链接到库文件
-target_link_libraries(app dlib::dlib)   # 这里很奇怪。window上必须要用dlib::dlib。linux下用dlib就可以。
+
+
+if (CMAKE_SYSTEM_NAME MATCHES "Windows")
+	target_link_libraries(app dlib::dlib)   # 这里很奇怪。window上必须要用dlib::dlib。linux下用dlib就可以。
+elseif (CMAKE_SYSTEM_NAME MATCHES "Linux")
+    target_link_libraries(app dlib)   # 这里很奇怪。window上必须要用dlib::dlib。linux下用dlib就可以。
+endif (CMAKE_SYSTEM_NAME MATCHES "Windows")

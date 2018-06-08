@@ -9,6 +9,4 @@ Alread exists:
 - protobuf_play   [test@ubuntu]
 - opencv_play [test@win10]
 - vlfeat_play [test@win10]
-
-To be added:
-- dlib
+- dlib_play  [test@win10&ubuntu16.04]
