@@ -1,18 +1,22 @@
 ﻿cmake_minimum_required(VERSION 3.1)
 
 # Define project name
-project(oh-my-traffic-sign)
+project(dlib_play)
 
 # C++11标准
 set (CMAKE_CXX_STANDARD 11)
-
 
 # 用于找到vlfeat编译好的各种lib和头文件
 if (CMAKE_SYSTEM_NAME MATCHES "Windows")
     set(DLIB_INC_DIR "d:/work/dlib")   #dlib头文件路径，改成你的
     set(DLIB_LIB_DIR "d:/work/dlib/build/dlib/Release")  #dlib库文件路径，改成你的。使得包含dlib.lib文件
 elseif (CMAKE_SYSTEM_NAME MATCHES "Linux")
-    list(APPEND CMAKE_PREFIX_PATH "/home/chris/work/gitdown/opencv-2.4.13/build")
+    set(DLIB_INC_DIR "/opt/work/dlib")   #dlib头文件路径，改成你的
+    set(DLIB_LIB_DIR "/opt/work/dlib/build/dlib")  #dlib库文件路径，改成你的。使得包含dlib.lib文件
+
+    # pthread库，在linux下必须。
+    set(CMAKE_CXX_FLAGS -pthread)
+
 endif (CMAKE_SYSTEM_NAME MATCHES "Windows")
 
 
