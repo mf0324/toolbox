@@ -1,0 +1,7 @@
+cmake_examples/caffe_cpp_play/build
+cmake_examples/dlib_play/build
+cmake_exmaples/gflags_play/build
+cmake_examples/glog_play/build
+cmake_exmaples/opencv_play/build
+cmake_examples/protobuf_play/build
+cmake_examples/vlfeat_play/build

@@ -1,0 +1,3 @@
+[submodule "imageset-viewer"]
+	path = imageset-viewer
+	url = http://github.com/zchrissirhcz/imageset-viewer
