@@ -6,13 +6,13 @@ project(dlib_play)
 # C++11标准
 set (CMAKE_CXX_STANDARD 11)
 
-# 用于找到vlfeat编译好的各种lib和头文件
+# 用于找到dlib编译好的各种lib和头文件
 if (CMAKE_SYSTEM_NAME MATCHES "Windows")
-    set(DLIB_INC_DIR "d:/work/dlib")   #dlib头文件路径，改成你的
-    set(DLIB_LIB_DIR "d:/work/dlib/build/dlib/Release")  #dlib库文件路径，改成你的。使得包含dlib.lib文件
+    set( ENV{dlib_DIR} "D:/work/dlib/build/install/lib/cmake/dlib" )
+    find_package(dlib REQUIRED)
 elseif (CMAKE_SYSTEM_NAME MATCHES "Linux")
-    set(DLIB_INC_DIR "/opt/work/dlib")   #dlib头文件路径，改成你的
-    set(DLIB_LIB_DIR "/opt/work/dlib/build/dlib")  #dlib库文件路径，改成你的。使得包含dlib.lib文件
+    set(dlib_INCLUDE_DIRS "/opt/work/dlib")   #dlib头文件路径，改成你的
+    set(dlib_LIBS "/opt/work/dlib/build/dlib")  #dlib库文件路径，改成你的。使得包含dlib.lib文件
 
     # pthread库，在linux下必须。
     set(CMAKE_CXX_FLAGS -pthread)
@@ -21,10 +21,10 @@ endif (CMAKE_SYSTEM_NAME MATCHES "Windows")
 
 
 # 添加头文件搜索路径
-INCLUDE_DIRECTORIES(${DLIB_INC_DIR})
+INCLUDE_DIRECTORIES(${dlib_INCLUDE_DIRS})
 
 # 添加库文件搜索路径
-link_directories(${DLIB_LIB_DIR})
+link_directories(${dlib_LIBS})
 
 
 function(assign_source_group)
@@ -56,4 +56,4 @@ my_add_executable(app src/face_detection_ex.cpp)
 # add_library(app SHARED vl)
 
 # 链接到库文件
-target_link_libraries(app dlib)
+target_link_libraries(app dlib::dlib)   # 这里很奇怪。window上必须要用dlib::dlib。linux下用dlib就可以。
