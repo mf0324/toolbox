@@ -5,3 +5,5 @@ cmake_examples/glog_play/build
 cmake_exmaples/opencv_play/build
 cmake_examples/protobuf_play/build
 cmake_examples/vlfeat_play/build
+
+*.pyc
