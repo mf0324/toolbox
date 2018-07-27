@@ -21,6 +21,7 @@ set(PROJ_INCLUDE_DIR "")
 ##################################
 #find_package(Threads REQUIRED)
 #message("CMAKE_THREAD_LIBS_INIT: ${CMAKE_THREAD_LIBS_INIT}")
+# 有时候报错提示pthread链接不成功，不是因为pthread本身，而是因为其他库有问题
 
 
 ##################################
@@ -28,8 +29,10 @@ set(PROJ_INCLUDE_DIR "")
 # OpenCV
 #
 ##################################
+# 如果是自行编译的opencv，则需要如下这句：
 #list(APPEND CMAKE_PREFIX_PATH "/opt/usr/opencv-git-3.4")
-message("!!! CMAKE_PREFIX_PATH: ${CMAKE_PREFIX_PATH}")
+# 如果是apt装的opencv(2.4.9)，则直接find_package即可
+# message("!!! CMAKE_PREFIX_PATH: ${CMAKE_PREFIX_PATH}")
 find_package(OpenCV REQUIRED)
 message(STATUS "OpenCV library status:")
 message(STATUS "    version: ${OpenCV_VERSION}")
