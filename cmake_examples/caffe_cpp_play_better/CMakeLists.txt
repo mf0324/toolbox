@@ -14,6 +14,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules" )
 set(PROJ_LINKER_LIBS "")
 set(PROJ_INCLUDE_DIR "")
 
+set(CMAKE_VERBOSE_MAKEFILE OFF)
+
 
 ##################################
 #
@@ -44,7 +46,7 @@ option(use_boost "Use Boost?" ON)
 ##################################
 if (use_opencv)
     #list(APPEND CMAKE_PREFIX_PATH "/opt/usr/opencv-git-3.4")
-    message("!!! CMAKE_PREFIX_PATH: ${CMAKE_PREFIX_PATH}")
+    #message("!!! CMAKE_PREFIX_PATH: ${CMAKE_PREFIX_PATH}")
     find_package(OpenCV REQUIRED)
     message(STATUS "OpenCV library status:")
     message(STATUS "    version: ${OpenCV_VERSION}")
@@ -125,6 +127,6 @@ INCLUDE_DIRECTORIES(${Caffe_INCLUDE_DIRS})
 add_executable(blob_demo src/blob_demo.cpp)
 
 # Link your application with OpenCV libraries
-message("!!! PROJ_LINKER_LIBS: ${PROJ_LINKER_LIBS}")
+# message("!!! PROJ_LINKER_LIBS: ${PROJ_LINKER_LIBS}")
 #target_link_libraries(im_cls ${PROJ_LINKER_LIBS})
 target_link_libraries(blob_demo ${PROJ_LINKER_LIBS})
