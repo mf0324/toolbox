@@ -14,13 +14,22 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules" )
 set(PROJ_LINKER_LIBS "")
 set(PROJ_INCLUDE_DIR "")
 
+##################################
+#
+# pThread
+#
+##################################
+#find_package(Threads REQUIRED)
+#message("CMAKE_THREAD_LIBS_INIT: ${CMAKE_THREAD_LIBS_INIT}")
+
 
 ##################################
 #
 # OpenCV
 #
 ##################################
-list(APPEND CMAKE_PREFIX_PATH "/opt/usr/opencv-git-3.4")
+#list(APPEND CMAKE_PREFIX_PATH "/opt/usr/opencv-git-3.4")
+message("!!! CMAKE_PREFIX_PATH: ${CMAKE_PREFIX_PATH}")
 find_package(OpenCV REQUIRED)
 message(STATUS "OpenCV library status:")
 message(STATUS "    version: ${OpenCV_VERSION}")
@@ -54,6 +63,7 @@ find_package(Protobuf REQUIRED)      #OK
 # Caffe
 #
 ##################################
+list(APPEND CMAKE_PREFIX_PATH "/home/zz/work/caffe-BVLC/build/install")
 find_package (Caffe REQUIRED)       #OK
 message(STATUS "Caffe library status:")
 message(STATUS "    Caffe_DIR: ${Caffe_DIR}")
