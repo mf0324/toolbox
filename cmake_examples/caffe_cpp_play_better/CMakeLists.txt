@@ -94,7 +94,8 @@ endif()
 #
 ##################################
 if (use_caffe)
-    list(APPEND CMAKE_PREFIX_PATH "/home/zz/work/caffe-BVLC/build_cmake/install")
+    #list(APPEND CMAKE_PREFIX_PATH "/home/zz/work/caffe-BVLC/build_cmake/install")
+    list(APPEND CMAKE_PREFIX_PATH "/home/zz/work/chris_rcf/build_cmake/install")
     find_package (Caffe REQUIRED)       #OK
     message(STATUS "Caffe library status:")
     message(STATUS "    Caffe_DIR: ${Caffe_DIR}")
@@ -124,9 +125,11 @@ INCLUDE_DIRECTORIES(${Caffe_INCLUDE_DIRS})
 
 # 添加可执行文件
 #add_executable(im_cls src/im_cls.cpp)
-add_executable(blob_demo src/blob_demo.cpp)
+#add_executable(blob_demo src/blob_demo.cpp)
+add_executable(net_demo src/net_demo.cpp)
 
 # Link your application with OpenCV libraries
 # message("!!! PROJ_LINKER_LIBS: ${PROJ_LINKER_LIBS}")
 #target_link_libraries(im_cls ${PROJ_LINKER_LIBS})
-target_link_libraries(blob_demo ${PROJ_LINKER_LIBS})
+#target_link_libraries(blob_demo ${PROJ_LINKER_LIBS})
+target_link_libraries(net_demo ${PROJ_LINKER_LIBS})
