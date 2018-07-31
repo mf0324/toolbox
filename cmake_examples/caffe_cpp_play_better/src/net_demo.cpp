@@ -61,8 +61,8 @@ int main(){
   string prototxt = "test.prototxt";
   string caffemodel = "rcf_pretrained_bsds.caffemodel";
   
-  shared_ptr<Net<float> > net;
-  net.reset(new Net<float>(prototxt, TEST));
+  shared_ptr< Net<float> > net(new caffe::Net<float>(prototxt, TEST));
+
   net->CopyTrainedLayersFrom(caffemodel);
   CHECK_EQ(net->num_inputs(), 1) << "!! Network should have exactly one input.";
   cout << "在CPU模式下，建立了RCF网络" << endl;
@@ -116,9 +116,9 @@ int main(){
       << "Input channels are not wrapping the input layer of the network.";
   
 
-  cout << "Just before Network forward" << endl;
+  cout << "\n=== Just before Network forward" << endl;
   net->Forward();
-  cout << "Network Forward OK" << endl;
+  cout << "\n=== Network Forward OK" << endl;
 
   // ======================
   // step 4
@@ -137,9 +137,16 @@ int main(){
   unsigned int num_data = blob->count(); 
   const float *blob_ptr = (const float *) blob->cpu_data();
 
+  cout << "\n=== Get network blob data OK" << endl;
+
   string save_pth = "2018_fuse.png";
-  Mat save_im(H, W, CV_32FC1, input_data);
-  save_im = 255 * (1.0 - save_im);
+  Mat netout_im(H, W, CV_32FC1, input_data);
+  Mat one_im = Mat::ones(H, W, CV_32FC1);
+  Mat save_im = one_im - netout_im;
+  save_im = 255 * save_im;
+  save_im.convertTo(save_im, CV_8UC1);
+
+  cout << "\n=== I'm OK" << endl;
 
   cv::imwrite(save_pth, save_im);
   cout << "Save image OK" << endl;
