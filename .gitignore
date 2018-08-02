@@ -11,3 +11,6 @@
 
 # ignore all the cpp build folders
 build
+
+
+*.caffemodel
