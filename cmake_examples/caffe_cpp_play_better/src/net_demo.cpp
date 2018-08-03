@@ -31,9 +31,6 @@ using std::ifstream;
 (ok) 保存edgemap
 
 把网络的forward()函数拆开来，自己写
-获取crop1的两个blob
-手动调用auto_crop_layer
-调用过程中进入caffe代码debug?
 */
 
 
@@ -63,7 +60,6 @@ int main(int argc, char** argv){
     string prototxt = "test.prototxt";
     // string caffemodel = "rcf_pretrained_bsds.caffemodel";
     string caffemodel = "/home/zz/models/rcf_bdci_kongxinSmall_lrtune_iter_55000.caffemodel";
-
     shared_ptr< Net<float> > net(new caffe::Net<float>(prototxt, TEST));
 
     net->CopyTrainedLayersFrom(caffemodel);
