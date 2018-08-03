@@ -96,6 +96,7 @@ endif()
 if (use_caffe)
     #list(APPEND CMAKE_PREFIX_PATH "/home/zz/work/caffe-BVLC/build_cmake/install")
     list(APPEND CMAKE_PREFIX_PATH "/home/zz/work/chris_rcf/build_cmake/install")
+    #list(APPEND CMAKE_PREFIX_PATH "/home/zz/work/caffe-BVLC/build_cmake/install")
     find_package (Caffe REQUIRED)       #OK
     message(STATUS "Caffe library status:")
     message(STATUS "    Caffe_DIR: ${Caffe_DIR}")
