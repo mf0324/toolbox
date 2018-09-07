@@ -11,7 +11,10 @@ from：https://www.zhihu.com/question/59597255/answer/168686857
 '''
 @author: kangkai
 '''
+import sys
+sys.path.insert(0, '/home/zz/work/caffe-BVLC/python')
 from caffe.proto import caffe_pb2
+import fire
 
 def toPrototxt(modelName, deployName):
     with open(modelName, 'rb') as f:
@@ -24,12 +27,13 @@ def toPrototxt(modelName, deployName):
         item.ClearField('blobs')
     for item in caffemodel.layer:
         item.ClearField('blobs')
-        
+
     # print(caffemodel)
     with open(deployName, 'w') as f:
         f.write(str(caffemodel))
 
 if __name__ == '__main__':
-    modelName = 'facenet_iter_14000.caffemodel'
-    deployName = 'facenet_deploy.prototxt'
-    toPrototxt(modelName, deployName)
+    fire.Fire(toPrototxt)
+    #modelName = 'facenet_iter_14000.caffemodel'
+    #deployName = 'facenet_deploy.prototxt'
+    #toPrototxt(modelName, deployName)

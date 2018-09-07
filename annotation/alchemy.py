@@ -88,17 +88,19 @@ class ImageAnno(object):
 
 class DetAnno(ImageAnno):
     """Detection Annotation of one image. Including image name, path, GT boxes, etc"""
-    def __init__(self, im_name, im_dir, box_lst=[], im=None):
+    def __init__(self, im_name, im_dir, box_lst=[], im=None, im_shape=[]):
         """
         @param im_name: image's name. e.g. lena.jpg
         @param im_dir:  folder that contains this image. can be relative or abstract directory path
         @param box_lst: list of BBox objects.
         @param im: nd-array type, opencv read image. can be empty ('')
+        @param im_shape: [im_wt, im_ht, im_dt] or just empty []. if empty, read from image's real path, thus the `im_dir` param must be specified. if not empty, the image won't be read via opencv and the specified shape will used to generate the pascal voc xml files
         """
         self.im_name = im_name
         self.im_dir = im_dir
         self.box_lst = box_lst
         self.im = im
+        self.im_shape = im_shape
 
     def __str__(self):
         str_content_lst = [
@@ -121,10 +123,15 @@ class DetAnno(ImageAnno):
         nd_filename = SubElement(nd_root, 'filename')
         nd_filename.text = self.im_name
 
-        if self.im is None:
-            print('self.im_pth is:', self.im_pth)
-            self.im = cv2.imread(self.im_pth)
-        im_ht, im_wt, im_dt = self.im.shape
+        if len(self.im_shape)==0:
+            if self.im is None:
+                print('self.im_pth is:', self.im_pth)
+                self.im = cv2.imread(self.im_pth)
+            im_ht, im_wt, im_dt = self.im.shape
+        else:
+            im_ht = self.im_shape[0]
+            im_wt = self.im_shape[1]
+            im_dt = self.im_shape[2]
 
         nd_size = SubElement(nd_root, 'size')
         nd_width = SubElement(nd_size, 'width')
