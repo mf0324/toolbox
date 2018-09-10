@@ -9,9 +9,15 @@ from lxml.etree import Element, SubElement, tostring
 from xml.dom.minidom import parseString
 import cv2
 
+def xywh2xyxy(x, y, w, h, bias):
+    x2 = x + w - 1 + bias
+    y2 = y + h - 1 + bias
+    #return [x, y, x2, y2]
+    return [x,y,x2,y2]
+
 class BBox(object):
     """bounding box"""
-    def __init__(self, x1, y1, x2, y2, cls=None, difficult=0):
+    def __init__(self, x1, y1, x2, y2, cls=None, difficult=0, det_anno=None, score=1):
         """
         @param cls: class of bounding box object
         """
@@ -21,6 +27,8 @@ class BBox(object):
         self.y2 = y2
         self.cls = cls
         self.difficult = difficult
+        self.det_anno = det_anno
+        self.score = score
 
     def translate(self, x, y):
         self.x1 += x
@@ -38,11 +46,11 @@ class BBox(object):
 
     @property
     def width(self):
-        return self.x2 - self.x1
+        return self.x2 - self.x1 + 1
 
     @property
     def height(self):
-        return self.y2 - self.y1
+        return self.y2 - self.y1 + 1
 
     @property
     def area(self):
@@ -52,9 +60,11 @@ class BBox(object):
         return [self.x1, self.y1, self.x2, self.y2]
 
     def __str__(self):
-        ret_str = 'x1={:d}, y1={:d}, x2={:d}, y2={:d}'.format(
-            self.x1, self.y1, self.x2, self.y2
+        ret_str = 'score={:f}, x1={:d}, y1={:d}, x2={:d}, y2={:d}'.format(
+            self.score, self.x1, self.y1, self.x2, self.y2
         )
+        if self.det_anno is not None:
+            ret_str = self.det_anno.im_name + ' ' + ret_str
         if self.cls is not None:
             ret_str += ', cls={:s}'.format(self.cls)
         return ret_str
@@ -99,6 +109,8 @@ class DetAnno(ImageAnno):
         self.im_dir = im_dir
         self.box_lst = box_lst
         self.im = im
+        for box in self.box_lst:
+            box.det_anno = self
 
     def __str__(self):
         str_content_lst = [
@@ -109,6 +121,9 @@ class DetAnno(ImageAnno):
             str_content_lst.append(str(box))
         ret_str = '\n'.join(str_content_lst)
         return ret_str
+
+    def __cmp__(self, other):
+        return cmp(self.im_name, other.im_name)
 
     @property
     def voc_xml(self):

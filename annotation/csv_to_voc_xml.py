@@ -40,7 +40,6 @@ def csv_to_voc_xml(csv_pth, im_dir, save_dir, cls_name='sign'):
                 continue
         box_lst_dict[im_name] = box_lst_dict.get(im_name, [])
         box_lst_dict[im_name].append(box)
-        box_lst_dict[im_name] = box_lst_dict.get(im_name, [])
     fin.close()
 
     det_anno_lst = []
