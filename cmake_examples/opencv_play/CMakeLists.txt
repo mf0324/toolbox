@@ -70,6 +70,8 @@ set( source_list
 
 # 添加可执行文件
 my_add_executable(app src/main.cpp)
+my_add_executable(app2 src/imshow_with_box.cpp)
 
 # Link your application with OpenCV libraries
 target_link_libraries(app ${OpenCV_LIBS})
+target_link_libraries(app2 ${OpenCV_LIBS})
