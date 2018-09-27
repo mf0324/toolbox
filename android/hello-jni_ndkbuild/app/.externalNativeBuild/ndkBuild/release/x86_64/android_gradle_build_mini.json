@@ -1,0 +1,17 @@
+{
+  "buildFiles": [
+    "D:\\work\\AndroidProjects\\hello-jni_ndkbuild\\app\\src\\main\\cpp\\Android.mk",
+    "D:\\work\\AndroidProjects\\hello-jni_ndkbuild\\app\\src\\main\\cpp\\Application.mk"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\zz9555.ARCSOFT-HZ\\AppData\\Local\\Android\\Sdk\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dD:\\work\\AndroidProjects\\hello-jni_ndkbuild\\app\\src\\main\\cpp\\Android.mk NDK_APPLICATION_MK\u003dD:\\work\\AndroidProjects\\hello-jni_ndkbuild\\app\\src\\main\\cpp\\Application.mk APP_ABI\u003dx86_64 NDK_ALL_ABIS\u003dx86_64 NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-21 NDK_OUT\u003dD:/work/AndroidProjects/hello-jni_ndkbuild/app/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003dD:\\work\\AndroidProjects\\hello-jni_ndkbuild\\app\\build\\intermediates\\ndkBuild\\release\\lib clean"
+  ],
+  "libraries": {
+    "hello-jni-release-x86_64": {
+      "artifactName": "hello-jni",
+      "buildCommand": "C:\\Users\\zz9555.ARCSOFT-HZ\\AppData\\Local\\Android\\Sdk\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dD:\\work\\AndroidProjects\\hello-jni_ndkbuild\\app\\src\\main\\cpp\\Android.mk NDK_APPLICATION_MK\u003dD:\\work\\AndroidProjects\\hello-jni_ndkbuild\\app\\src\\main\\cpp\\Application.mk APP_ABI\u003dx86_64 NDK_ALL_ABIS\u003dx86_64 NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-21 NDK_OUT\u003dD:/work/AndroidProjects/hello-jni_ndkbuild/app/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003dD:\\work\\AndroidProjects\\hello-jni_ndkbuild\\app\\build\\intermediates\\ndkBuild\\release\\lib D:/work/AndroidProjects/hello-jni_ndkbuild/app/build/intermediates/ndkBuild/release/obj/local/x86_64/libhello-jni.so",
+      "abi": "x86_64",
+      "output": "D:\\work\\AndroidProjects\\hello-jni_ndkbuild\\app\\build\\intermediates\\ndkBuild\\release\\obj\\local\\x86_64\\libhello-jni.so"
+    }
+  }
+}
